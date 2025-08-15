@@ -9,25 +9,6 @@ const button = document.getElementById("spin");
 function spinReel() {
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
- // animar rolos
-  const reelPromises = [];
-  const finalSymbols = [];
-
-  // determinar tempo de parada para cada rolo
-  const baseTime = 900;
-  const extraTimes = [0, 180, 360];
-
-  playBeep(240, 0.08, "triangle"); // som de início de giro
-
-  for (let r = 0; r < REEL_COUNT; r++) {
-    const reel = document.getElementById(`reel${r}`).querySelector(".strip");
-    // animação: deslocar verticalmente o strip com transition
-    const stopTime = baseTime + extraTimes[r] + Math.floor(Math.random()*300);
-    reel.style.transition = `transform ${stopTime}ms cubic-bezier(.2,.9,.3,1)`;
-    // escolher símbolo final aleatório
-    const chosen = SYMBOLS[Math.floor(Math.random()*SYMBOLS.length)];
-    finalSymbols.push(chosen);
-
 
 function playGame() {
   const slot1 = spinReel();
@@ -48,4 +29,5 @@ function playGame() {
 }
 
 button.addEventListener("click", playGame);
+
 
